@@ -65,4 +65,23 @@
   <ItemGroup>
     <None Include="PublishLocations\AKADILData.publish.xml" />
   </ItemGroup>
+  <ItemGroup>
+    <Build Include="dbo\Tables\User.sql" />
+    <Build Include="dbo\Tables\Entreprise.sql" />
+    <Build Include="dbo\Tables\Identificateur_entreprise.sql" />
+    <Build Include="dbo\Tables\CODE_TAUX_PRODUITS.sql" />
+    <Build Include="dbo\Tables\CODE_TAUX_CHARGES.sql" />
+    <Build Include="dbo\Tables\Instance_declaration.sql" />
+    <Build Include="dbo\Tables\Deduction.sql" />
+    <Build Include="dbo\Tables\Chiffre_affaires.sql" />
+    <Build Include="dbo\Tables\Fournisseur.sql" />
+    <Build Include="dbo\Tables\Biens_services.sql" />
+    <Build Include="dbo\Tables\Ventilation_CA_totale.sql" />
+    <Build Include="dbo\Tables\Ventilation_CA_imposable.sql" />
+    <Build Include="dbo\Tables\Ventilation_deduction.sql" />
+    <Build Include="dbo\Tables\Declaration_totaux.sql" />
+  </ItemGroup>
+  <ItemGroup>
+    <RefactorLog Include="AKADILData.refactorlog" />
+  </ItemGroup>
 </Project>

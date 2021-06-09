@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Operations Version="1.0" xmlns="http://schemas.microsoft.com/sqlserver/dac/Serialization/2012/02">
+  <Operation Name="Rename Refactor" Key="ea993a19-ab85-4b45-94ea-21bd0b465ad0" ChangeDateTime="06/09/2021 16:19:58">
+    <Property Name="ElementName" Value="[dbo].[CK_Identificateur_entreprise_Column check]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Identificateur_entreprise]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_Identificateur_entreprise_Column check (Encaissement_debit = Encaissement or Encaissement_debit = Debit)]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="2a824bd1-2d8f-46cf-aa3c-974b10874c92" ChangeDateTime="06/09/2021 16:20:28">
+    <Property Name="ElementName" Value="[dbo].[CK_Identificateur_entreprise_Column check (Encaissement_debit = Encaissement or Encaissement_debit = Debit)]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Identificateur_entreprise]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_Identificateur_entreprise_Column]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="cfa84d4d-6f29-42ce-b235-e32b95de53df" ChangeDateTime="06/09/2021 16:22:37">
+    <Property Name="ElementName" Value="[dbo].[CK_Identificateur_entreprise_Column_1]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Identificateur_entreprise]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_Identificateur_entreprise_Mois_trimestre]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="5302e99f-2494-4ad1-94cd-3d29d1c85e9e" ChangeDateTime="06/09/2021 16:23:28">
+    <Property Name="ElementName" Value="[dbo].[CK_Identificateur_entreprise_Column]" />
+    <Property Name="ElementType" Value="SqlCheckConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Identificateur_entreprise]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[CK_Identificateur_entreprise_Encaissement_debit]" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="bae4f828-9298-46ca-a320-bb5c5f2961f4" ChangeDateTime="06/09/2021 17:24:23">
+    <Property Name="ElementName" Value="[dbo].[Deduction].[Montant_ht]" />
+    <Property Name="ElementType" Value="SqlSimpleColumn" />
+    <Property Name="ParentElementName" Value="[dbo].[Deduction]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="Montant_HT" />
+  </Operation>
+  <Operation Name="Rename Refactor" Key="9b16b7b0-0f9c-47cc-b242-45dec886b99b" ChangeDateTime="06/09/2021 17:49:46">
+    <Property Name="ElementName" Value="[dbo].[FK_Ventilation_CA_totale_ToTable]" />
+    <Property Name="ElementType" Value="SqlForeignKeyConstraint" />
+    <Property Name="ParentElementName" Value="[dbo].[Ventilation_CA_totale]" />
+    <Property Name="ParentElementType" Value="SqlTable" />
+    <Property Name="NewName" Value="[FK_Ventilation_CA_totale_To_Instance_declaration]" />
+  </Operation>
+</Operations>

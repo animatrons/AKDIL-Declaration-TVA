@@ -1,0 +1,907 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="AKADILDataModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="uniqueidentifier" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Biens_services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Chiffre_affaires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Num_facture" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_facture" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Client" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Objet" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Montant_HT" Type="money" Nullable="false" />
+          <Property Name="Taux" Type="int" Nullable="false" />
+          <Property Name="Montant_TVA" Type="money" Nullable="false" />
+          <Property Name="Montant_TTC" Type="money" Nullable="false" />
+          <Property Name="Mode_reglement" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_reglement" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Id_instance" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CODE_TAUX_CHARGES">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Taux" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CODE_TAUX_PRODUITS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Taux" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar(max)" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Declaration_totaux">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Totale_TVA_exigible" Type="money" />
+          <Property Name="Totale_TVA_deductible" Type="money" />
+          <Property Name="Credit_N1" Type="money" />
+          <Property Name="Id_instance" Type="int" />
+        </EntityType>
+        <EntityType Name="Deduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Num_facture" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_facture" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Fournisseur" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="IF_fournisseur" Type="int" Nullable="false" />
+          <Property Name="Biens_services" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Montant_HT" Type="money" Nullable="false" />
+          <Property Name="Taux" Type="int" Nullable="false" />
+          <Property Name="Montant_TVA" Type="money" Nullable="false" />
+          <Property Name="Montant_TTC" Type="money" Nullable="false" />
+          <Property Name="Libelle_paiment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Date_paiment" Type="datetime2" Precision="7" Nullable="false" />
+          <Property Name="Mode_paiment" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="ICE" Type="int" Nullable="false" />
+          <Property Name="Id_instance" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="AdminId" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="Raison_sociale" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="Forme_juridique" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Objet" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="IF" Type="int" Nullable="false" />
+          <Property Name="ICE" Type="int" Nullable="false" />
+          <Property Name="RC" Type="int" Nullable="false" />
+          <Property Name="TP" Type="int" Nullable="false" />
+          <Property Name="CIN" Type="char" MaxLength="10" />
+          <Property Name="Siege_sociale" Type="nvarchar(max)" Nullable="false" />
+          <Property Name="Ville" Type="nvarchar" MaxLength="50" />
+          <Property Name="Tel" Type="nvarchar" MaxLength="50" />
+          <Property Name="Email" Type="nvarchar" MaxLength="256" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="IF" Type="int" />
+          <Property Name="ICE" Type="int" />
+        </EntityType>
+        <EntityType Name="Identificateur_entreprise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Id_entreprise" Type="int" Nullable="false" />
+          <Property Name="Credit_N1" Type="money" />
+          <Property Name="Annee" Type="int" Nullable="false" />
+          <Property Name="Encaissement_debit" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Mois_trimestre" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Instance_declaration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Mois" Type="int" Nullable="false" />
+          <Property Name="Id_Identificateur_entreprise" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EmailAdress" Type="nvarchar" MaxLength="256" Nullable="false" />
+          <Property Name="CreateDate" Type="datetime2" Precision="7" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ventilation_CA_imposable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Base_imposable" Type="money" />
+          <Property Name="Taxe_exigible" Type="money" />
+          <Property Name="Id_instance" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ventilation_CA_totale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Montant" Type="money" />
+          <Property Name="Id_instance" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Ventilation_deduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" Nullable="false" />
+          <Property Name="Code" Type="int" Nullable="false" />
+          <Property Name="Designation" Type="nvarchar" MaxLength="50" />
+          <Property Name="Taux" Type="int" />
+          <Property Name="TVA" Type="money" />
+          <Property Name="Prorata" Type="int" />
+          <Property Name="TVA_dedcutible" Type="money" />
+          <Property Name="Id_instance" Type="int" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Chiffre_affaire_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Chiffre_affaires" Type="Self.Chiffre_affaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chiffre_affaires">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Declaration_totaux_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="0..1" />
+          <End Role="Declaration_totaux" Type="Self.Declaration_totaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Declaration_totaux">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduction_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Deduction" Type="Self.Deduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Deduction">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entreprise_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Identificateur_entreprise_ToEntreprise">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Identificateur_entreprise" Type="Self.Identificateur_entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Identificateur_entreprise">
+              <PropertyRef Name="Id_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instance_declaration_To_Identificateur_entreprise">
+          <End Role="Identificateur_entreprise" Type="Self.Identificateur_entreprise" Multiplicity="1" />
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Identificateur_entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instance_declaration">
+              <PropertyRef Name="Id_Identificateur_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventilation_CA_imposable_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Ventilation_CA_imposable" Type="Self.Ventilation_CA_imposable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ventilation_CA_imposable">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventilation_CA_totale_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Ventilation_CA_totale" Type="Self.Ventilation_CA_totale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ventilation_CA_totale">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventilation_deduction_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Ventilation_deduction" Type="Self.Ventilation_deduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ventilation_deduction">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AKADILDataModelStoreContainer">
+          <EntitySet Name="__RefactorLog" EntityType="Self.__RefactorLog" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Biens_services" EntityType="Self.Biens_services" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Chiffre_affaires" EntityType="Self.Chiffre_affaires" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CODE_TAUX_CHARGES" EntityType="Self.CODE_TAUX_CHARGES" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CODE_TAUX_PRODUITS" EntityType="Self.CODE_TAUX_PRODUITS" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Declaration_totaux" EntityType="Self.Declaration_totaux" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deduction" EntityType="Self.Deduction" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Identificateur_entreprise" EntityType="Self.Identificateur_entreprise" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Instance_declaration" EntityType="Self.Instance_declaration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventilation_CA_imposable" EntityType="Self.Ventilation_CA_imposable" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventilation_CA_totale" EntityType="Self.Ventilation_CA_totale" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventilation_deduction" EntityType="Self.Ventilation_deduction" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Chiffre_affaire_To_Instance_declaration" Association="Self.FK_Chiffre_affaire_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Chiffre_affaires" EntitySet="Chiffre_affaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Declaration_totaux_To_Instance_declaration" Association="Self.FK_Declaration_totaux_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Declaration_totaux" EntitySet="Declaration_totaux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduction_To_Instance_declaration" Association="Self.FK_Deduction_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Deduction" EntitySet="Deduction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entreprise_ToUser" Association="Self.FK_Entreprise_ToUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Identificateur_entreprise_ToEntreprise" Association="Self.FK_Identificateur_entreprise_ToEntreprise">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Identificateur_entreprise" EntitySet="Identificateur_entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instance_declaration_To_Identificateur_entreprise" Association="Self.FK_Instance_declaration_To_Identificateur_entreprise">
+            <End Role="Identificateur_entreprise" EntitySet="Identificateur_entreprise" />
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventilation_CA_imposable_To_Instance_declaration" Association="Self.FK_Ventilation_CA_imposable_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Ventilation_CA_imposable" EntitySet="Ventilation_CA_imposable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventilation_CA_totale_To_Instance_declaration" Association="Self.FK_Ventilation_CA_totale_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Ventilation_CA_totale" EntitySet="Ventilation_CA_totale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventilation_deduction_To_Instance_declaration" Association="Self.FK_Ventilation_deduction_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Ventilation_deduction" EntitySet="Ventilation_deduction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="AKADILDataModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="C__RefactorLog">
+          <Key>
+            <PropertyRef Name="OperationKey" />
+          </Key>
+          <Property Name="OperationKey" Type="Guid" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Biens_services">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Chiffre_affaires">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Num_facture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_facture" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Client" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Objet" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Montant_HT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Taux" Type="Int32" Nullable="false" />
+          <Property Name="Montant_TVA" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Montant_TTC" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Mode_reglement" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_reglement" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Id_instance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Chiffre_affaire_To_Instance_declaration" FromRole="Chiffre_affaires" ToRole="Instance_declaration" />
+        </EntityType>
+        <EntityType Name="CODE_TAUX_CHARGES">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Taux" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="CODE_TAUX_PRODUITS">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Taux" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Declaration_totaux">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Totale_TVA_exigible" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Totale_TVA_deductible" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Credit_N1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Id_instance" Type="Int32" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Declaration_totaux_To_Instance_declaration" FromRole="Declaration_totaux" ToRole="Instance_declaration" />
+        </EntityType>
+        <EntityType Name="Deduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Num_facture" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_facture" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Fournisseur" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IF_fournisseur" Type="Int32" Nullable="false" />
+          <Property Name="Biens_services" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Montant_HT" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Taux" Type="Int32" Nullable="false" />
+          <Property Name="Montant_TVA" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Montant_TTC" Type="Decimal" Precision="19" Scale="4" Nullable="false" />
+          <Property Name="Libelle_paiment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Date_paiment" Type="DateTime" Nullable="false" Precision="7" />
+          <Property Name="Mode_paiment" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="ICE" Type="Int32" Nullable="false" />
+          <Property Name="Id_instance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Deduction_To_Instance_declaration" FromRole="Deduction" ToRole="Instance_declaration" />
+        </EntityType>
+        <EntityType Name="Entreprise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="AdminId" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Raison_sociale" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Forme_juridique" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Objet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="IF" Type="Int32" Nullable="false" />
+          <Property Name="ICE" Type="Int32" Nullable="false" />
+          <Property Name="RC" Type="Int32" Nullable="false" />
+          <Property Name="TP" Type="Int32" Nullable="false" />
+          <Property Name="CIN" Type="String" MaxLength="10" FixedLength="true" Unicode="false" />
+          <Property Name="Siege_sociale" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Ville" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Tel" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" MaxLength="256" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User" Relationship="Self.FK_Entreprise_ToUser" FromRole="Entreprise" ToRole="User" />
+          <NavigationProperty Name="Identificateur_entreprise" Relationship="Self.FK_Identificateur_entreprise_ToEntreprise" FromRole="Entreprise" ToRole="Identificateur_entreprise" />
+        </EntityType>
+        <EntityType Name="Fournisseur">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="IF" Type="Int32" />
+          <Property Name="ICE" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Identificateur_entreprise">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Id_entreprise" Type="Int32" Nullable="false" />
+          <Property Name="Credit_N1" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Annee" Type="Int32" Nullable="false" />
+          <Property Name="Encaissement_debit" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Mois_trimestre" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Entreprise" Relationship="Self.FK_Identificateur_entreprise_ToEntreprise" FromRole="Identificateur_entreprise" ToRole="Entreprise" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Instance_declaration_To_Identificateur_entreprise" FromRole="Identificateur_entreprise" ToRole="Instance_declaration" />
+        </EntityType>
+        <EntityType Name="Instance_declaration">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Mois" Type="Int32" Nullable="false" />
+          <Property Name="Id_Identificateur_entreprise" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Chiffre_affaires" Relationship="Self.FK_Chiffre_affaire_To_Instance_declaration" FromRole="Instance_declaration" ToRole="Chiffre_affaires" />
+          <NavigationProperty Name="Declaration_totaux" Relationship="Self.FK_Declaration_totaux_To_Instance_declaration" FromRole="Instance_declaration" ToRole="Declaration_totaux" />
+          <NavigationProperty Name="Deduction" Relationship="Self.FK_Deduction_To_Instance_declaration" FromRole="Instance_declaration" ToRole="Deduction" />
+          <NavigationProperty Name="Identificateur_entreprise" Relationship="Self.FK_Instance_declaration_To_Identificateur_entreprise" FromRole="Instance_declaration" ToRole="Identificateur_entreprise" />
+          <NavigationProperty Name="Ventilation_CA_imposable" Relationship="Self.FK_Ventilation_CA_imposable_To_Instance_declaration" FromRole="Instance_declaration" ToRole="Ventilation_CA_imposable" />
+          <NavigationProperty Name="Ventilation_CA_totale" Relationship="Self.FK_Ventilation_CA_totale_To_Instance_declaration" FromRole="Instance_declaration" ToRole="Ventilation_CA_totale" />
+          <NavigationProperty Name="Ventilation_deduction" Relationship="Self.FK_Ventilation_deduction_To_Instance_declaration" FromRole="Instance_declaration" ToRole="Ventilation_deduction" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="LastName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="EmailAdress" Type="String" MaxLength="256" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="CreateDate" Type="DateTime" Nullable="false" Precision="7" />
+          <NavigationProperty Name="Entreprise" Relationship="Self.FK_Entreprise_ToUser" FromRole="User" ToRole="Entreprise" />
+        </EntityType>
+        <EntityType Name="Ventilation_CA_imposable">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Base_imposable" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Taxe_exigible" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Id_instance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Ventilation_CA_imposable_To_Instance_declaration" FromRole="Ventilation_CA_imposable" ToRole="Instance_declaration" />
+        </EntityType>
+        <EntityType Name="Ventilation_CA_totale">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Montant" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Id_instance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Ventilation_CA_totale_To_Instance_declaration" FromRole="Ventilation_CA_totale" ToRole="Instance_declaration" />
+        </EntityType>
+        <EntityType Name="Ventilation_deduction">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" />
+          <Property Name="Code" Type="Int32" Nullable="false" />
+          <Property Name="Designation" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Taux" Type="Int32" />
+          <Property Name="TVA" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Prorata" Type="Int32" />
+          <Property Name="TVA_dedcutible" Type="Decimal" Precision="19" Scale="4" />
+          <Property Name="Id_instance" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Instance_declaration" Relationship="Self.FK_Ventilation_deduction_To_Instance_declaration" FromRole="Ventilation_deduction" ToRole="Instance_declaration" />
+        </EntityType>
+        <Association Name="FK_Chiffre_affaire_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Chiffre_affaires" Type="Self.Chiffre_affaires" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Chiffre_affaires">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Declaration_totaux_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="0..1" />
+          <End Role="Declaration_totaux" Type="Self.Declaration_totaux" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Declaration_totaux">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Deduction_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Deduction" Type="Self.Deduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Deduction">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Entreprise_ToUser">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Entreprise">
+              <PropertyRef Name="AdminId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Identificateur_entreprise_ToEntreprise">
+          <End Role="Entreprise" Type="Self.Entreprise" Multiplicity="1" />
+          <End Role="Identificateur_entreprise" Type="Self.Identificateur_entreprise" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Identificateur_entreprise">
+              <PropertyRef Name="Id_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Instance_declaration_To_Identificateur_entreprise">
+          <End Role="Identificateur_entreprise" Type="Self.Identificateur_entreprise" Multiplicity="1" />
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Identificateur_entreprise">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Instance_declaration">
+              <PropertyRef Name="Id_Identificateur_entreprise" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventilation_CA_imposable_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Ventilation_CA_imposable" Type="Self.Ventilation_CA_imposable" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ventilation_CA_imposable">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventilation_CA_totale_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Ventilation_CA_totale" Type="Self.Ventilation_CA_totale" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ventilation_CA_totale">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Ventilation_deduction_To_Instance_declaration">
+          <End Role="Instance_declaration" Type="Self.Instance_declaration" Multiplicity="1" />
+          <End Role="Ventilation_deduction" Type="Self.Ventilation_deduction" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Instance_declaration">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Ventilation_deduction">
+              <PropertyRef Name="Id_instance" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="AKADILDataEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="C__RefactorLog" EntityType="Self.C__RefactorLog" />
+          <EntitySet Name="Biens_services" EntityType="Self.Biens_services" />
+          <EntitySet Name="Chiffre_affaires" EntityType="Self.Chiffre_affaires" />
+          <EntitySet Name="CODE_TAUX_CHARGES" EntityType="Self.CODE_TAUX_CHARGES" />
+          <EntitySet Name="CODE_TAUX_PRODUITS" EntityType="Self.CODE_TAUX_PRODUITS" />
+          <EntitySet Name="Declaration_totaux" EntityType="Self.Declaration_totaux" />
+          <EntitySet Name="Deduction" EntityType="Self.Deduction" />
+          <EntitySet Name="Entreprise" EntityType="Self.Entreprise" />
+          <EntitySet Name="Fournisseur" EntityType="Self.Fournisseur" />
+          <EntitySet Name="Identificateur_entreprise" EntityType="Self.Identificateur_entreprise" />
+          <EntitySet Name="Instance_declaration" EntityType="Self.Instance_declaration" />
+          <EntitySet Name="User" EntityType="Self.User" />
+          <EntitySet Name="Ventilation_CA_imposable" EntityType="Self.Ventilation_CA_imposable" />
+          <EntitySet Name="Ventilation_CA_totale" EntityType="Self.Ventilation_CA_totale" />
+          <EntitySet Name="Ventilation_deduction" EntityType="Self.Ventilation_deduction" />
+          <AssociationSet Name="FK_Chiffre_affaire_To_Instance_declaration" Association="Self.FK_Chiffre_affaire_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Chiffre_affaires" EntitySet="Chiffre_affaires" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Declaration_totaux_To_Instance_declaration" Association="Self.FK_Declaration_totaux_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Declaration_totaux" EntitySet="Declaration_totaux" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Deduction_To_Instance_declaration" Association="Self.FK_Deduction_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Deduction" EntitySet="Deduction" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Entreprise_ToUser" Association="Self.FK_Entreprise_ToUser">
+            <End Role="User" EntitySet="User" />
+            <End Role="Entreprise" EntitySet="Entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Identificateur_entreprise_ToEntreprise" Association="Self.FK_Identificateur_entreprise_ToEntreprise">
+            <End Role="Entreprise" EntitySet="Entreprise" />
+            <End Role="Identificateur_entreprise" EntitySet="Identificateur_entreprise" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Instance_declaration_To_Identificateur_entreprise" Association="Self.FK_Instance_declaration_To_Identificateur_entreprise">
+            <End Role="Identificateur_entreprise" EntitySet="Identificateur_entreprise" />
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventilation_CA_imposable_To_Instance_declaration" Association="Self.FK_Ventilation_CA_imposable_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Ventilation_CA_imposable" EntitySet="Ventilation_CA_imposable" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventilation_CA_totale_To_Instance_declaration" Association="Self.FK_Ventilation_CA_totale_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Ventilation_CA_totale" EntitySet="Ventilation_CA_totale" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Ventilation_deduction_To_Instance_declaration" Association="Self.FK_Ventilation_deduction_To_Instance_declaration">
+            <End Role="Instance_declaration" EntitySet="Instance_declaration" />
+            <End Role="Ventilation_deduction" EntitySet="Ventilation_deduction" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="AKADILDataModelStoreContainer" CdmEntityContainer="AKADILDataEntities">
+          <EntitySetMapping Name="C__RefactorLog">
+            <EntityTypeMapping TypeName="AKADILDataModel.C__RefactorLog">
+              <MappingFragment StoreEntitySet="__RefactorLog">
+                <ScalarProperty Name="OperationKey" ColumnName="OperationKey" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Biens_services">
+            <EntityTypeMapping TypeName="AKADILDataModel.Biens_services">
+              <MappingFragment StoreEntitySet="Biens_services">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Chiffre_affaires">
+            <EntityTypeMapping TypeName="AKADILDataModel.Chiffre_affaires">
+              <MappingFragment StoreEntitySet="Chiffre_affaires">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Num_facture" ColumnName="Num_facture" />
+                <ScalarProperty Name="Date_facture" ColumnName="Date_facture" />
+                <ScalarProperty Name="Client" ColumnName="Client" />
+                <ScalarProperty Name="Objet" ColumnName="Objet" />
+                <ScalarProperty Name="Montant_HT" ColumnName="Montant_HT" />
+                <ScalarProperty Name="Taux" ColumnName="Taux" />
+                <ScalarProperty Name="Montant_TVA" ColumnName="Montant_TVA" />
+                <ScalarProperty Name="Montant_TTC" ColumnName="Montant_TTC" />
+                <ScalarProperty Name="Mode_reglement" ColumnName="Mode_reglement" />
+                <ScalarProperty Name="Date_reglement" ColumnName="Date_reglement" />
+                <ScalarProperty Name="Id_instance" ColumnName="Id_instance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CODE_TAUX_CHARGES">
+            <EntityTypeMapping TypeName="AKADILDataModel.CODE_TAUX_CHARGES">
+              <MappingFragment StoreEntitySet="CODE_TAUX_CHARGES">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Taux" ColumnName="Taux" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CODE_TAUX_PRODUITS">
+            <EntityTypeMapping TypeName="AKADILDataModel.CODE_TAUX_PRODUITS">
+              <MappingFragment StoreEntitySet="CODE_TAUX_PRODUITS">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Taux" ColumnName="Taux" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Declaration_totaux">
+            <EntityTypeMapping TypeName="AKADILDataModel.Declaration_totaux">
+              <MappingFragment StoreEntitySet="Declaration_totaux">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Totale_TVA_exigible" ColumnName="Totale_TVA_exigible" />
+                <ScalarProperty Name="Totale_TVA_deductible" ColumnName="Totale_TVA_deductible" />
+                <ScalarProperty Name="Credit_N1" ColumnName="Credit_N1" />
+                <ScalarProperty Name="Id_instance" ColumnName="Id_instance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deduction">
+            <EntityTypeMapping TypeName="AKADILDataModel.Deduction">
+              <MappingFragment StoreEntitySet="Deduction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Num_facture" ColumnName="Num_facture" />
+                <ScalarProperty Name="Date_facture" ColumnName="Date_facture" />
+                <ScalarProperty Name="Fournisseur" ColumnName="Fournisseur" />
+                <ScalarProperty Name="IF_fournisseur" ColumnName="IF_fournisseur" />
+                <ScalarProperty Name="Biens_services" ColumnName="Biens_services" />
+                <ScalarProperty Name="Montant_HT" ColumnName="Montant_HT" />
+                <ScalarProperty Name="Taux" ColumnName="Taux" />
+                <ScalarProperty Name="Montant_TVA" ColumnName="Montant_TVA" />
+                <ScalarProperty Name="Montant_TTC" ColumnName="Montant_TTC" />
+                <ScalarProperty Name="Libelle_paiment" ColumnName="Libelle_paiment" />
+                <ScalarProperty Name="Date_paiment" ColumnName="Date_paiment" />
+                <ScalarProperty Name="Mode_paiment" ColumnName="Mode_paiment" />
+                <ScalarProperty Name="ICE" ColumnName="ICE" />
+                <ScalarProperty Name="Id_instance" ColumnName="Id_instance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Entreprise">
+            <EntityTypeMapping TypeName="AKADILDataModel.Entreprise">
+              <MappingFragment StoreEntitySet="Entreprise">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="AdminId" ColumnName="AdminId" />
+                <ScalarProperty Name="Raison_sociale" ColumnName="Raison_sociale" />
+                <ScalarProperty Name="Forme_juridique" ColumnName="Forme_juridique" />
+                <ScalarProperty Name="Objet" ColumnName="Objet" />
+                <ScalarProperty Name="IF" ColumnName="IF" />
+                <ScalarProperty Name="ICE" ColumnName="ICE" />
+                <ScalarProperty Name="RC" ColumnName="RC" />
+                <ScalarProperty Name="TP" ColumnName="TP" />
+                <ScalarProperty Name="CIN" ColumnName="CIN" />
+                <ScalarProperty Name="Siege_sociale" ColumnName="Siege_sociale" />
+                <ScalarProperty Name="Ville" ColumnName="Ville" />
+                <ScalarProperty Name="Tel" ColumnName="Tel" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Fournisseur">
+            <EntityTypeMapping TypeName="AKADILDataModel.Fournisseur">
+              <MappingFragment StoreEntitySet="Fournisseur">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="IF" ColumnName="IF" />
+                <ScalarProperty Name="ICE" ColumnName="ICE" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Identificateur_entreprise">
+            <EntityTypeMapping TypeName="AKADILDataModel.Identificateur_entreprise">
+              <MappingFragment StoreEntitySet="Identificateur_entreprise">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Id_entreprise" ColumnName="Id_entreprise" />
+                <ScalarProperty Name="Credit_N1" ColumnName="Credit_N1" />
+                <ScalarProperty Name="Annee" ColumnName="Annee" />
+                <ScalarProperty Name="Encaissement_debit" ColumnName="Encaissement_debit" />
+                <ScalarProperty Name="Mois_trimestre" ColumnName="Mois_trimestre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Instance_declaration">
+            <EntityTypeMapping TypeName="AKADILDataModel.Instance_declaration">
+              <MappingFragment StoreEntitySet="Instance_declaration">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Mois" ColumnName="Mois" />
+                <ScalarProperty Name="Id_Identificateur_entreprise" ColumnName="Id_Identificateur_entreprise" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="User">
+            <EntityTypeMapping TypeName="AKADILDataModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="EmailAdress" ColumnName="EmailAdress" />
+                <ScalarProperty Name="CreateDate" ColumnName="CreateDate" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventilation_CA_imposable">
+            <EntityTypeMapping TypeName="AKADILDataModel.Ventilation_CA_imposable">
+              <MappingFragment StoreEntitySet="Ventilation_CA_imposable">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Base_imposable" ColumnName="Base_imposable" />
+                <ScalarProperty Name="Taxe_exigible" ColumnName="Taxe_exigible" />
+                <ScalarProperty Name="Id_instance" ColumnName="Id_instance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventilation_CA_totale">
+            <EntityTypeMapping TypeName="AKADILDataModel.Ventilation_CA_totale">
+              <MappingFragment StoreEntitySet="Ventilation_CA_totale">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Montant" ColumnName="Montant" />
+                <ScalarProperty Name="Id_instance" ColumnName="Id_instance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventilation_deduction">
+            <EntityTypeMapping TypeName="AKADILDataModel.Ventilation_deduction">
+              <MappingFragment StoreEntitySet="Ventilation_deduction">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="Code" ColumnName="Code" />
+                <ScalarProperty Name="Designation" ColumnName="Designation" />
+                <ScalarProperty Name="Taux" ColumnName="Taux" />
+                <ScalarProperty Name="TVA" ColumnName="TVA" />
+                <ScalarProperty Name="Prorata" ColumnName="Prorata" />
+                <ScalarProperty Name="TVA_dedcutible" ColumnName="TVA_dedcutible" />
+                <ScalarProperty Name="Id_instance" ColumnName="Id_instance" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Aucun" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

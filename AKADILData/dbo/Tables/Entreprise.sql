@@ -1,0 +1,18 @@
+﻿CREATE TABLE [dbo].[Entreprise]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [AdminId] NVARCHAR(128) NOT NULL, 
+    [Raison_sociale] NVARCHAR(256) NOT NULL, 
+    [Forme_juridique] NVARCHAR(50) NOT NULL, 
+    [Objet] NVARCHAR(MAX) NOT NULL, 
+    [IF] INT NOT NULL, 
+    [ICE] INT NOT NULL, 
+    [RC] INT NOT NULL, 
+    [TP] INT NOT NULL, 
+    [CIN] CHAR(10) NULL, 
+    [Siege_sociale] NVARCHAR(MAX) NOT NULL, 
+    [Ville] NVARCHAR(50) NULL, 
+    [Tel] NVARCHAR(50) NULL, 
+    [Email] NVARCHAR(256) NULL, 
+    CONSTRAINT [FK_Entreprise_ToUser] FOREIGN KEY ([AdminId]) REFERENCES [User]([Id])
+)

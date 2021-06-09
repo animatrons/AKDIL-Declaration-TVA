@@ -1,0 +1,7 @@
+﻿CREATE TABLE [dbo].[CODE_TAUX_PRODUITS]
+(
+	[Id] INT NOT NULL PRIMARY KEY, 
+    [Code] INT NOT NULL, 
+    [Taux] INT NOT NULL, 
+    [Designation] NVARCHAR(MAX) NOT NULL
+)
