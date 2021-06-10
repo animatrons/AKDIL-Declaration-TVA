@@ -1,4 +1,6 @@
-﻿using AKDILTVADesktopUI.ViewModels;
+﻿using AKDILTVADesktopUI;
+using AKDILTVADesktopUI.Helpers;
+using AKDILTVADesktopUI.ViewModels;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
@@ -6,6 +8,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
+using System.Windows.Controls;
 
 namespace AKDILTVADesktopUI
 {
@@ -18,6 +21,11 @@ namespace AKDILTVADesktopUI
         public Bootstrapper()
         {
             Initialize();
+
+            ConventionManager.AddElementConvention<PasswordBox>(
+            PasswordBoxHelper.BoundPasswordProperty,
+            "Password",
+            "PasswordChanged");
         }
 
         protected override void Configure()
@@ -26,7 +34,8 @@ namespace AKDILTVADesktopUI
 
             _container // this ties the interface to the implementation
                 .Singleton<IWindowManager, WindowManager>() // handling windows
-                .Singleton<IEventAggregator, EventAggregator>(); // pass event messaging trhough out the application // a singleton creates onne instance of the class for the life of the application or the scope of the container
+                .Singleton<IEventAggregator, EventAggregator>() // pass event messaging trhough out the application // a singleton creates onne instance of the class for the life of the application or the scope of the container
+                .Singleton<IAPIHelper, APIHelper>();
 
             // wiring up viewModels to views
             // using a reflection here, it will cause a small performance hit at startup

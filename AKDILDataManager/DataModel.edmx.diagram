@@ -10,7 +10,7 @@
         <EntityTypeShape EntityType="AKADILDataModel.Chiffre_affaires" Width="1.5" PointX="9.5" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.CODE_TAUX_CHARGES" Width="1.875" PointX="13.25" PointY="0.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.CODE_TAUX_PRODUITS" Width="1.875" PointX="13.25" PointY="2.625" IsExpanded="true" />
-        <EntityTypeShape EntityType="AKADILDataModel.Declaration_totaux" Width="1.5" PointX="11.25" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="AKADILDataModel.Declaration_totaux" Width="1.75" PointX="11.25" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Deduction" Width="1.5" PointX="7.625" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Entreprise" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Fournisseur" Width="1.5" PointX="13.25" PointY="4.875" IsExpanded="true" />
@@ -28,8 +28,21 @@
         <AssociationConnector Association="AKADILDataModel.FK_Instance_declaration_To_Identificateur_entreprise" ManuallyRouted="false" />
         <AssociationConnector Association="AKADILDataModel.FK_Ventilation_CA_imposable_To_Instance_declaration" ManuallyRouted="false" >
         </AssociationConnector>
-        <AssociationConnector Association="AKADILDataModel.FK_Ventilation_CA_totale_To_Instance_declaration" ManuallyRouted="false" />
-        <AssociationConnector Association="AKADILDataModel.FK_Ventilation_deduction_To_Instance_declaration" ManuallyRouted="false" >
+        <AssociationConnector Association="AKADILDataModel.FK_Ventilation_CA_totale_To_Instance_declaration" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.875" PointY="1.9725576835042347" />
+          <ConnectorPoint PointX="6.8958333333333339" PointY="1.9725576835042347" />
+          <ConnectorPoint PointX="6.8958333333333339" PointY="4.8456022135416674" />
+          <ConnectorPoint PointX="3.8721011941358565" PointY="4.8456022135416674" />
+          <ConnectorPoint PointX="3.8721011941358565" PointY="5.75" />
+        </AssociationConnector>
+        <AssociationConnector Association="AKADILDataModel.FK_Ventilation_deduction_To_Instance_declaration" ManuallyRouted="true" >
+          <ConnectorPoint PointX="7.875" PointY="2.583732372306319" />
+          <ConnectorPoint PointX="7.354166666666667" PointY="2.583732372306319" />
+          <ConnectorPoint PointX="7.354166666666667" PointY="5.0956022135416674" />
+          <ConnectorPoint PointX="3.95543452746919" PointY="5.0956022135416665" />
+          <ConnectorPoint PointX="3.788767860802523" PointY="5.0956022135416674" />
+          <ConnectorPoint PointX="1.4269396926286964" PointY="5.0956022135416674" />
+          <ConnectorPoint PointX="1.4269396926286964" PointY="5.75" />
         </AssociationConnector>
       </Diagram>
     </edmx:Diagrams>
