@@ -9,6 +9,10 @@ Project("{00D1A9C2-B5F0-4AF3-8072-F6C62B433612}") = "AKADILData", "AKADILData\AK
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKDILTVADesktopUI", "AKDILTVADesktopUI\AKDILTVADesktopUI.csproj", "{F20E6501-E9EB-47FE-83AC-8FFE7E17A6E4}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKDILDataManager.Library", "AKDILDataManager.Library\AKDILDataManager.Library.csproj", "{A7EBE2B0-C402-4206-A6EF-99F0638471A8}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AKDILDesktopUI.Library", "AKDILDesktopUI.Library\AKDILDesktopUI.Library.csproj", "{CBCD1950-4408-47EA-801A-3F8A1B6BF37E}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -29,6 +33,14 @@ Global
 		{F20E6501-E9EB-47FE-83AC-8FFE7E17A6E4}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{F20E6501-E9EB-47FE-83AC-8FFE7E17A6E4}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{F20E6501-E9EB-47FE-83AC-8FFE7E17A6E4}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A7EBE2B0-C402-4206-A6EF-99F0638471A8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A7EBE2B0-C402-4206-A6EF-99F0638471A8}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A7EBE2B0-C402-4206-A6EF-99F0638471A8}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A7EBE2B0-C402-4206-A6EF-99F0638471A8}.Release|Any CPU.Build.0 = Release|Any CPU
+		{CBCD1950-4408-47EA-801A-3F8A1B6BF37E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{CBCD1950-4408-47EA-801A-3F8A1B6BF37E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{CBCD1950-4408-47EA-801A-3F8A1B6BF37E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{CBCD1950-4408-47EA-801A-3F8A1B6BF37E}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

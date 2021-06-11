@@ -1,4 +1,6 @@
-﻿using AKDILTVADesktopUI;
+﻿using AKDILDesktopUI.Library.Api;
+using AKDILDesktopUI.Library.Models;
+using AKDILTVADesktopUI;
 using AKDILTVADesktopUI.Helpers;
 using AKDILTVADesktopUI.ViewModels;
 using Caliburn.Micro;
@@ -35,6 +37,7 @@ namespace AKDILTVADesktopUI
             _container // this ties the interface to the implementation
                 .Singleton<IWindowManager, WindowManager>() // handling windows
                 .Singleton<IEventAggregator, EventAggregator>() // pass event messaging trhough out the application // a singleton creates onne instance of the class for the life of the application or the scope of the container
+                .Singleton<ILoggedInUserModel, LoggedInUserModel>()
                 .Singleton<IAPIHelper, APIHelper>();
 
             // wiring up viewModels to views
