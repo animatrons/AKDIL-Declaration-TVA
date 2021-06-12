@@ -1,0 +1,143 @@
+﻿<UserControl x:Class="AKDILTVADesktopUI.Views.EntrepriseView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:AKDILTVADesktopUI.Views"
+             mc:Ignorable="d" Background="White" FontSize="20"
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+            
+            <RowDefinition Height="*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Column 0: Vertical tabs and Add button  -->
+
+        <TextBlock Grid.Column="0" Grid.Row="0" Text="Entreprise: " Margin="20 10 20 0"/>
+
+        <TabControl x:Name="EntrepriseTabs" Grid.Column="0" HorizontalAlignment="Left" MinHeight="300" Margin="20 10 20 10" 
+                    Grid.Row="1" VerticalAlignment="Top" Width="150" HorizontalContentAlignment="Left">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+        <!-- Row 0: Name and 2 dorp down lists  -->
+
+        <Button x:Name="AddEntreprise" Grid.Column="0" Grid.Row="2" Width="150" Content="Ajouter"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="... " Margin="20 10 20 0"/>
+        <ComboBox  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Margin="20 10 20 0"
+                   VerticalAlignment="Top" Width="120"/>
+        <ComboBox  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="20 10 20 0"
+                   VerticalAlignment="Top" Width="120"/>
+
+
+
+        <TabControl x:Name="TablesTabs" Grid.Column="1" Grid.ColumnSpan="7" MinHeight="380" Margin="20,10,20,0" 
+                    Grid.Row="1" Grid.RowSpan="5" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="15">
+            <TabItem Header="Identification" x:Name="IdTab">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <!--#region Entreprise Identificetion -->
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Raison Sociale : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Forme Juridique : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Objet : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="N° IF :" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="N° ICE : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="N° RC : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="N° TP : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="CIN : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Siége social : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Ville : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="Tél : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="Fax : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="12" Text="E MAIL : " Margin="10 3 20 3"/>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" x:Name="RaisonField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="FormeField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="ObjetField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" x:Name="IFField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" x:Name="ICEField" Text="... " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" x:Name="RCField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="6" x:Name="TPField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="7" x:Name="CINField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="8" x:Name="SiegeField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="9" x:Name="VillenField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="10" x:Name="TelField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="11" x:Name="FaxField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="12" x:Name="EmailField" Text="..." Margin="10 3 20 3"/>
+
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="ANNEE : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Encaissement ou Débit : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Mois ou trimestre : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="Crédit N-1 : " Margin="10 3 20 3"/>
+
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="..." x:Name="AnneeField" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="..." x:Name="EDField" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="..." x:Name="MTField" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="..." x:Name="CreditField" Margin="10 3 20 3"/>
+                    <!--#endregion-->
+                    
+                </Grid>
+
+            </TabItem>
+            <TabItem Header="Deduction" x:Name="DeductionTab">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Chiffre d'affaires" x:Name="CATab">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Declaration" x:Name="DeclarationTab">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="Codes" x:Name="CodesTab">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+
+    </Grid>
+</UserControl>

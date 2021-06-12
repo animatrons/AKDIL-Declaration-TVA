@@ -32,7 +32,7 @@ namespace AKDILDesktopUI.Library.Api
             apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<AuthenticatedUser> Authenticate(string username, string password)
+        public async Task<AuthenticatedUser> Authentificate(string username, string password)
         {
             var data = new FormUrlEncodedContent(new[]
             {

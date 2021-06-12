@@ -3,6 +3,7 @@ using AKDILTVADesktopUI.Helpers;
 using Caliburn.Micro;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,7 +73,6 @@ namespace AKDILTVADesktopUI.ViewModels
         }
 
 
-
         // method, property naming and parameter positioning is calibur.micro convention based 
 
         public bool CanLogIn
@@ -94,7 +94,7 @@ namespace AKDILTVADesktopUI.ViewModels
         {
             try
             {
-                var result = await _apiHelper.Authenticate(UserName, Password);
+                var result = await _apiHelper.Authentificate(UserName, Password);
                 ErrorMessage = "";
 
                 // Capture more info about the user
