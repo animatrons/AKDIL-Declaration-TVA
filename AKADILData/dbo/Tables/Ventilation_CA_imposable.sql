@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Ventilation_CA_imposable]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Code] INT NOT NULL, 
     [Designation] NVARCHAR(50) NULL, 
     [Base_imposable] MONEY NULL, 

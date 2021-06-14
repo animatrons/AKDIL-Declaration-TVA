@@ -3,18 +3,33 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using AKDILTVADesktopUI.EventModels;
 using Caliburn.Micro;
 
 namespace AKDILTVADesktopUI.ViewModels
 {
-    public class ShellViewModel : Conductor<object>
+    public class ShellViewModel : Conductor<object>, IHandle<LogInEvent>
     {
-        private LoginViewModel _loginVM;
+        public IEventAggregator _events;
+        public EntrepriseViewModel _entrepriseVM;
+        public SimpleContainer _container;
+
         // Using constructor injection
-        public ShellViewModel(LoginViewModel loginVM)
+        public ShellViewModel(IEventAggregator events, EntrepriseViewModel entrepriseVM,
+            SimpleContainer container)
         {
-            _loginVM = loginVM;
-            ActivateItem(_loginVM);
+            _events = events;
+            _entrepriseVM = entrepriseVM;
+            _container = container;
+
+            _events.Subscribe(this);
+
+            ActivateItem(_container.GetInstance<LoginViewModel>()); // iniciate and clean up the login vm for next time
+        }
+
+        public void Handle(LogInEvent message)
+        {
+            ActivateItem(_entrepriseVM);
         }
     }
 }

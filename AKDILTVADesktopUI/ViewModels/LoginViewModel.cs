@@ -1,11 +1,7 @@
 ﻿using AKDILDesktopUI.Library.Api;
-using AKDILTVADesktopUI.Helpers;
+using AKDILTVADesktopUI.EventModels;
 using Caliburn.Micro;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace AKDILTVADesktopUI.ViewModels
@@ -14,11 +10,14 @@ namespace AKDILTVADesktopUI.ViewModels
     {
         private string _userName;
         private string _password;
+        private string _errorMessage;
         private IAPIHelper _apiHelper;
+        private IEventAggregator _events;
 
-        public LoginViewModel(IAPIHelper apiHelper)
+        public LoginViewModel(IAPIHelper apiHelper, IEventAggregator events)
         {
             _apiHelper = apiHelper;
+            _events = events;
         }
 
         public string UserName
@@ -43,24 +42,6 @@ namespace AKDILTVADesktopUI.ViewModels
             }
         }
 
-        public bool IsErrorVisible
-        {
-            get 
-            {
-                bool output = false;
-
-                if (ErrorMessage?.Length > 0)
-                {
-                    output = true;
-                }
-
-                return output; 
-            }
-            
-        }
-
-        private string _errorMessage;
-
         public string ErrorMessage
         {
             get { return _errorMessage; }
@@ -72,8 +53,24 @@ namespace AKDILTVADesktopUI.ViewModels
             }
         }
 
+        public bool IsErrorVisible
+        {
+            get
+            {
+                bool output = false;
+
+                if (ErrorMessage?.Length > 0)
+                {
+                    output = true;
+                }
+
+                return output;
+            }
+
+        }
 
         // method, property naming and parameter positioning is calibur.micro convention based 
+        // the names must match the element identifier x:name in the view (case incensitive)
 
         public bool CanLogIn
         {
@@ -99,10 +96,12 @@ namespace AKDILTVADesktopUI.ViewModels
 
                 // Capture more info about the user
                 await _apiHelper.GetLoggedInUserInfo(result.Access_Token);
+
+                _events.PublishOnUIThread(new LogInEvent());
             }
             catch (Exception ex)
             {
-                ErrorMessage = "Mot de passe ou username incorrecte" + " Or " + ex.Message;
+                ErrorMessage = "Mot de passe ou e-mail incorrecte" + " Or " + ex.Message;
             }
         }
     }

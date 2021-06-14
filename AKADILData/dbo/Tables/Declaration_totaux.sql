@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Declaration_totaux]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Totale_TVA_exigible] MONEY NULL, 
     [Totale_TVA_deductible] MONEY NULL, 
     [Credit_N1] MONEY NULL, 

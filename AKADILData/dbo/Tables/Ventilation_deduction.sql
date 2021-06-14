@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Ventilation_deduction]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Code] INT NOT NULL, 
     [Designation] NVARCHAR(50) NULL,
     [Taux] INT NULL, 

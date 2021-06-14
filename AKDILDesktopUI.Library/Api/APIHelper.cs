@@ -13,7 +13,9 @@ namespace AKDILDesktopUI.Library.Api
 {
     public class APIHelper : IAPIHelper
     {
-        public HttpClient apiClient { get; set; }
+        // HTTP client created for the life span of the application, only one is opened
+        public HttpClient _apiClient { get; set; }  
+
         private ILoggedInUserModel _loggedInUser; 
 
         public APIHelper(ILoggedInUserModel loggedInUser)
@@ -22,17 +24,28 @@ namespace AKDILDesktopUI.Library.Api
             _loggedInUser = loggedInUser;
         }
 
-        private void InitializeClient()
+        // A readonly property that can get the api client and use it anywwhere else that has access to this api helper (we want to seperate the apis from the main one)
+        public HttpClient ApiClient
+        {
+            get
+            {
+                return _apiClient;
+            }
+        }
+
+        // We initialize thz client
+        private void InitializeClient() 
         {
             string api = ConfigurationManager.AppSettings["api"];
 
-            apiClient = new HttpClient();
-            apiClient.BaseAddress = new Uri(api);
-            apiClient.DefaultRequestHeaders.Accept.Clear();
-            apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _apiClient = new HttpClient();
+            _apiClient.BaseAddress = new Uri(api); 
+            _apiClient.DefaultRequestHeaders.Accept.Clear();
+            _apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
         }
 
-        public async Task<AuthenticatedUser> Authentificate(string username, string password)
+        // Authentificating the user
+        public async Task<AuthenticatedUser> Authentificate(string username, string password) 
         {
             var data = new FormUrlEncodedContent(new[]
             {
@@ -41,7 +54,7 @@ namespace AKDILDesktopUI.Library.Api
                 new KeyValuePair<string, string>("password", password)
             });
 
-            using (HttpResponseMessage response = await apiClient.PostAsync("/Token", data))
+            using (HttpResponseMessage response = await _apiClient.PostAsync("/Token", data))
             {
                 if (response.IsSuccessStatusCode)
                 {
@@ -55,14 +68,15 @@ namespace AKDILDesktopUI.Library.Api
             }
         }
 
-        public async Task GetLoggedInUserInfo(string token)
+        // Getting the user info and storing it in the _loggetInUser prop
+        public async Task GetLoggedInUserInfo(string token) 
         {
-            apiClient.DefaultRequestHeaders.Clear();
-            apiClient.DefaultRequestHeaders.Accept.Clear();
-            apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
-            apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer { token }");
+            _apiClient.DefaultRequestHeaders.Clear();
+            _apiClient.DefaultRequestHeaders.Accept.Clear();
+            _apiClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+            _apiClient.DefaultRequestHeaders.Add("Authorization", $"Bearer { token }");
 
-            using (HttpResponseMessage response = await apiClient.GetAsync("/api/User"))
+            using (HttpResponseMessage response = await _apiClient.GetAsync("/api/User"))
             {
                 if (response.IsSuccessStatusCode)
                 {

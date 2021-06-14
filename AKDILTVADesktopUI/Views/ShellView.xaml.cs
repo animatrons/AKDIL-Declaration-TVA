@@ -23,5 +23,14 @@ namespace AKDILTVADesktopUI.Views
         {
             InitializeComponent();
         }
+
+        
+
+        /*protected override void OnLocationChanged(EventArgs e)
+        {
+            c1.HorizontalOffset += 1;
+            c1.HorizontalOffset -= 1;
+            base.OnLocationChanged(e);
+        }*/
     }
 }

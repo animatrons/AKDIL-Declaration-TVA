@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Chiffre_affaires]
 (
-	[Id] INT NOT NULL PRIMARY KEY,
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Code] INT NOT NULL, 
     [Num_facture] NVARCHAR(50) NOT NULL, 
     [Date_facture] DATETIME2 NOT NULL, 

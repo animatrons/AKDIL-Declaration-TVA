@@ -8,17 +8,17 @@ using System.Threading.Tasks;
 
 namespace AKDILDataManager.Library.DataAccess
 {
-    public class UserData
+    public class EntrepriseData
     {
-        public List<UserModel> GetUserById(string Id)
+        public List<EntrepriseModel> GetEntreprises(string Id)
         {
             SqlDataAccess sql = new SqlDataAccess();
 
-            var p = new { Id = Id };
+            var p = new { admin_Id = Id };
 
-            var output = sql.LoadData<UserModel, dynamic>("[dbo].[spUserLookup]", p, "AKADILData");
+            var output = sql.LoadData<EntrepriseModel, dynamic>("[dbo].[spEntreprise_GetAll]", p, "AKADILData");
 
-            return output; 
+            return output;
         }
     }
 }

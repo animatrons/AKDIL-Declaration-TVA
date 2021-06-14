@@ -15,7 +15,7 @@
         <EntityTypeShape EntityType="AKADILDataModel.Entreprise" Width="1.5" PointX="2.5" PointY="0.5" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Fournisseur" Width="1.5" PointX="14.875" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Identificateur_entreprise" Width="2.125" PointX="4.5" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="AKADILDataModel.Instance_declaration" Width="1.5" PointX="7.875" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="AKADILDataModel.Instance_declaration" Width="1.75" PointX="7.875" PointY="2.25" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.User" Width="1.5" PointX="0.625" PointY="1.375" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Ventilation_CA_imposable" Width="2.125" PointX="4.875" PointY="5.75" IsExpanded="true" />
         <EntityTypeShape EntityType="AKADILDataModel.Ventilation_CA_totale" Width="2" PointX="2.625" PointY="5.75" IsExpanded="true" />

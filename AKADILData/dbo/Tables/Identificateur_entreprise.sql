@@ -1,6 +1,6 @@
 ﻿CREATE TABLE [dbo].[Identificateur_entreprise]
 (
-	[Id] INT NOT NULL PRIMARY KEY, 
+	[Id] INT NOT NULL PRIMARY KEY IDENTITY, 
     [Id_entreprise] INT NOT NULL, 
     [Credit_N1] MONEY NULL, 
     [Annee] INT NOT NULL, 

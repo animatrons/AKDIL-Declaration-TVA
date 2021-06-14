@@ -5,55 +5,57 @@
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
              xmlns:local="clr-namespace:AKDILTVADesktopUI.Views"
              mc:Ignorable="d" Background="White" FontSize="20"
-             d:DesignHeight="450" d:DesignWidth="800">
-    <Grid>
-        <Grid.RowDefinitions>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            <RowDefinition Height="auto"/>
-            
-            <RowDefinition Height="*"/>
-        </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="auto"/>
-            <ColumnDefinition Width="*"/>
-        </Grid.ColumnDefinitions>
+             Height="auto" Width="auto" MinHeight="450" MinWidth="800">
 
-        <!-- Column 0: Vertical tabs and Add button  -->
+    <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"> 
+        <Grid DockPanel.Dock="Left" Width="160" MaxWidth="160" Margin="0" HorizontalAlignment="Left">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="45" MaxHeight="45"/>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <!-- Column 0: Entreprises drop down list and Add button  -->
 
-        <TextBlock Grid.Column="0" Grid.Row="0" Text="Entreprise: " Margin="20 10 20 0"/>
+            <TextBlock HorizontalAlignment="Right" Grid.Row="0" Text="Entreprise: " 
+                       Margin="0,0,0,8" Height="27" VerticalAlignment="Bottom" Width="150"/>
 
-        <TabControl x:Name="EntrepriseTabs" Grid.Column="0" HorizontalAlignment="Left" MinHeight="300" Margin="20 10 20 10" 
-                    Grid.Row="1" VerticalAlignment="Top" Width="150" HorizontalContentAlignment="Left">
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-            <TabItem Header="TabItem">
-                <Grid Background="#FFE5E5E5"/>
-            </TabItem>
-        </TabControl>
+            <ComboBox x:Name="SelectEntreprise" Grid.Row="1" Margin="10,10,0,20"  Width="150">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Raison_sociale}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
-        <!-- Row 0: Name and 2 dorp down lists  -->
+            <Button x:Name="AddEntreprise" Grid.Row="2" Margin="10,0,0,0"  Width="150" Content="Ajouter"/>
+        </Grid>
 
-        <Button x:Name="AddEntreprise" Grid.Column="0" Grid.Row="2" Width="150" Content="Ajouter"/>
+        <Grid DockPanel.Dock="Top">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+                <ColumnDefinition Width="auto"/>
+            </Grid.ColumnDefinitions>
 
-        <TextBlock Grid.Column="1" Grid.Row="0" Text="... " Margin="20 10 20 0"/>
-        <ComboBox  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Margin="20 10 20 0"
+            <!-- Row 0: Name and 2 dorp down lists  -->
+
+            <TextBlock Grid.Column="0" Text="... " Margin="20 10 20 0" Width="200" x:Name="TitleEntrepriseName"/>
+            <ComboBox  Grid.Column="1" HorizontalAlignment="Left" Margin="20 10 20 0"
+                   VerticalAlignment="Top" Width="120" x:Name="SelectEntrepriseYear"/>
+            <Button Grid.Column="2"  HorizontalAlignment="Center" Margin="20 10 20 0" 
+                    Width="40" VerticalAlignment="Center" x:Name="AddEntrepriseYear"> + </Button>
+            <ComboBox  Grid.Column="3" HorizontalAlignment="Left" x:Name="SelectEntrepriseMonth" Margin="20 10 20 0"
                    VerticalAlignment="Top" Width="120"/>
-        <ComboBox  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="20 10 20 0"
-                   VerticalAlignment="Top" Width="120"/>
 
+        </Grid>
 
+        <!-- Content: Tables tabs  -->
 
-        <TabControl x:Name="TablesTabs" Grid.Column="1" Grid.ColumnSpan="7" MinHeight="380" Margin="20,10,20,0" 
-                    Grid.Row="1" Grid.RowSpan="5" VerticalAlignment="Top" HorizontalContentAlignment="Left" FontSize="15">
-            <TabItem Header="Identification" x:Name="IdTab">
+        <TabControl x:Name="TablesTabs" Grid.Column="1" Grid.ColumnSpan="100" MinHeight="380" Height="auto" Width="auto" Margin="20,10,10,10" 
+                    Grid.Row="1" Grid.RowSpan="3" HorizontalContentAlignment="Left" FontSize="15">
+
+            <TabItem Header="Identification" FontSize="12" x:Name="IdTab">
                 <Grid Background="#FFE5E5E5">
                     <Grid.RowDefinitions>
                         <RowDefinition Height="auto"/>
@@ -119,10 +121,302 @@
                     <TextBlock Grid.Column="3" Grid.Row="1" Text="..." x:Name="EDField" Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="3" Grid.Row="2" Text="..." x:Name="MTField" Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="3" Grid.Row="3" Text="..." x:Name="CreditField" Margin="10 3 20 3"/>
-                    <!--#endregion-->
-                    
-                </Grid>
 
+                    <Button Grid.Column="2" Grid.Row="11" x:Name="DeleteEntrepriseYear" Content="Supprimer l'année en cours"></Button>
+                    <Button Grid.Column="2" Grid.Row="12" x:Name="DeleteEntreprise" Content="Supprimer L'entreprise"></Button>
+                    <!--#endregion-->
+
+                </Grid>
+            </TabItem>
+
+            <TabItem Header="Deduction" ScrollViewer.CanContentScroll="True" FontSize="12" x:Name="DeductionTab" Width="auto" Height="auto">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch"  Background="#FFE5E5E5">
+                    <Grid DockPanel.Dock="Top"  Height="32"> 
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Code:"></Label>
+                        <ComboBox Grid.Column="1" x:Name="CodesListDeduction"></ComboBox>
+                        <Label Grid.Column="2" Content="N° Facture:"></Label>
+                        <TextBox Grid.Column="3" x:Name="NumFactureDeduction" Width="70"></TextBox>
+                        <Label Grid.Column="4" Content="Date:"></Label>
+                        <DatePickerTextBox Grid.Column="5" x:Name="DateFactureDeduction" Width="70"></DatePickerTextBox>
+                        <Label Grid.Column="6" Content="Fournisseur:"></Label>
+                        <TextBox Grid.Column="7" x:Name="FournisseurDeduction" Width="70"></TextBox>
+                        <Label Grid.Column="8" Content="N° IF:"></Label>
+                        <TextBox Grid.Column="9" x:Name="IfFournisseurDeduction" Width="70"></TextBox>
+                        <Label Grid.Column="10" Content="Biens et Services:"></Label>
+                        <TextBox Grid.Column="11" x:Name="BiensServicesDeduction" Width="70"></TextBox>
+                        <Label Grid.Column="12" Content="Montant TTC:"></Label>
+                        <TextBox Grid.Column="13" x:Name="MontantTTCDeduction" Width="70"></TextBox>
+                        <Label Grid.Column="14" Content="Libelle Paiement:"></Label>
+                        <TextBox Grid.Column="15" x:Name="LibellePaiementDeduction" Width="70"></TextBox>
+                        <Label Grid.Column="16" Content="Date Paiement:"></Label>
+                        <DatePickerTextBox Grid.Column="17" x:Name="DatePaiementDeduction" Width="70"></DatePickerTextBox>
+                        <Label Grid.Column="18" Content="Mode Paiement:"></Label>
+                        <ComboBox Grid.Column="19" x:Name="ModePaiementDeduction" Width="70"></ComboBox>
+                        <Label Grid.Column="20" Content="ICE:"></Label>
+                        <TextBox Grid.Column="21" x:Name="ICEDeduction" Width="70"></TextBox>
+
+                        <Button x:Name="AddFactureDeduction" Grid.Column="22">Ajouter</Button>
+                    </Grid>
+                    <DataGrid ScrollViewer.CanContentScroll="True" x:Name="DataGridDeduction">
+                       
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Chiffre d'affaires" FontSize="12"  x:Name="CATab">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFE5E5E5">
+                    <Grid DockPanel.Dock="Top" Height="32">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <Label Grid.Column="0" Content="Code:"></Label>
+                        <ComboBox Grid.Column="1" x:Name="CodesListCA"></ComboBox>
+                        <Label Grid.Column="2" Content="N° Facture:"></Label>
+                        <TextBox Grid.Column="3" x:Name="NumFactureCA" Width="100"></TextBox>
+                        <Label Grid.Column="4" Content="Date:"></Label>
+                        <DatePickerTextBox Grid.Column="5" x:Name="DateFactureCA" Width="100"></DatePickerTextBox>
+                        <Label Grid.Column="6" Content="Client:"></Label>
+                        <TextBox Grid.Column="7" x:Name="ClientCA" Width="100"></TextBox>
+                        <Label Grid.Column="8" Content="Objet:"></Label>
+                        <TextBox Grid.Column="9" x:Name="ObjetCA" Width="100"></TextBox>
+                        <Label Grid.Column="10" Content="Montant TTC:"></Label>
+                        <TextBox Grid.Column="11" x:Name="MontantTTCCA" Width="100"></TextBox>
+                        <Label Grid.Column="12" Content="Mode Reglement:"></Label>
+                        <ComboBox Grid.Column="13" x:Name="ModeReglementCA" Width="100"></ComboBox>
+                        <Label Grid.Column="14" Content="Date Reglement:"></Label>
+                        <DatePickerTextBox Grid.Column="15" x:Name="DateReglementCA" Width="100"></DatePickerTextBox>
+
+                        <Button x:Name="AddFactureCA" Grid.Column="16">Ajouter</Button>
+                    </Grid>
+                    <DataGrid ScrollViewer.CanContentScroll="True" x:Name="DataGridCA">
+
+                    </DataGrid>
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Declaration" FontSize="12" x:Name="DeclarationTab">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFE5E5E5">
+                    <Grid DockPanel.Dock="Top" Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock>Ventilation du chiffre d’affaires total Montant:</TextBlock>
+                    </Grid>
+
+                    <DataGrid x:Name="DataGridDeclarationCATotal" DockPanel.Dock="Top" Height="auto">
+                        
+                    </DataGrid>
+                    
+                    <Grid DockPanel.Dock="Top" Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock> Ventilation du chiffre d’affaires imposable: </TextBlock>
+                    </Grid>
+
+                    <DataGrid x:Name="DataGridDeclarationCAImposable" DockPanel.Dock="Top" Height="auto">
+
+                    </DataGrid>
+                    
+                    <Grid DockPanel.Dock="Top" Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock> Ventilation des déductions: </TextBlock>
+
+                    </Grid>
+
+                    <DataGrid x:Name="DataGridDeclarationDeduction" DockPanel.Dock="Top" Height="auto">
+
+                    </DataGrid>
+                    
+                </DockPanel>
+            </TabItem>
+
+            <TabItem Header="Codes" FontSize="12" x:Name="CodesTab">
+                <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFE5E5E5">
+                    <Grid DockPanel.Dock="Top" Height="25">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="auto"/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock>Codes:</TextBlock>
+                    </Grid>
+
+                    <DataGrid x:Name="DataGridCodes" DockPanel.Dock="Top" Height="auto">
+
+                    </DataGrid>
+
+                    
+
+                </DockPanel>
+            </TabItem>
+
+        </TabControl>
+
+    </DockPanel>
+    
+    <!--
+    
+    <Grid VerticalAlignment="Stretch" HorizontalAlignment="Right" Width="800">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="45" MaxHeight="45" x:Name="c1" />
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+
+            <RowDefinition Height="17*"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="190" MaxWidth="190" x:Name="r1"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="auto"/>
+            <ColumnDefinition Width="116*"/>
+        </Grid.ColumnDefinitions>
+
+
+        <TextBlock HorizontalAlignment="Right" Grid.Row="0" Width="150" Text="Entreprise: "  Margin="0,0,20,8" Height="27" VerticalAlignment="Bottom"/>
+
+        <TabControl x:Name="EntrepriseTabs" Grid.Column="0" HorizontalAlignment="Right" 
+                    MinHeight="300" Margin="0,0,20,0" 
+                    Grid.Row="1" VerticalAlignment="Bottom"  Width="150" HorizontalContentAlignment="Left">
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+            <TabItem Header="TabItem">
+                <Grid Background="#FFE5E5E5"/>
+            </TabItem>
+        </TabControl>
+
+        <Button x:Name="AddEntreprise" Grid.Column="0" Grid.Row="2" Width="150" Content="Ajouter"/>
+
+
+        <Button x:Name="AddEntreprise" Grid.Column="0" Grid.Row="2" Width="150" Content="Ajouter"/>
+
+        <TextBlock Grid.Column="1" Grid.Row="0" Text="... " Margin="20 10 20 0"/>
+        <ComboBox  Grid.Column="2" Grid.Row="0" HorizontalAlignment="Left" Margin="20 10 20 0"
+                   VerticalAlignment="Top" Width="120"/>
+        <ComboBox  Grid.Column="3" Grid.Row="0" HorizontalAlignment="Left" Margin="20 10 20 0"
+                   VerticalAlignment="Top" Width="120"/>
+
+
+
+        <TabControl x:Name="TablesTabs" Grid.Column="1" Grid.ColumnSpan="100" MinHeight="380" Height="auto" Width="auto" Margin="20,10,10,10" 
+                    Grid.Row="1" Grid.RowSpan="3" HorizontalContentAlignment="Left" FontSize="15">
+
+            <TabItem Header="Identification" x:Name="IdTab">
+                <Grid Background="#FFE5E5E5">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition Height="*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="auto"/>
+                        <ColumnDefinition Width="*"/>
+                    </Grid.ColumnDefinitions>
+                    <TextBlock Grid.Column="0" Grid.Row="0" Text="Raison Sociale : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="1" Text="Forme Juridique : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="2" Text="Objet : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="3" Text="N° IF :" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="4" Text="N° ICE : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="5" Text="N° RC : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="6" Text="N° TP : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="7" Text="CIN : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="8" Text="Siége social : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="9" Text="Ville : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="10" Text="Tél : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="Fax : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="12" Text="E MAIL : " Margin="10 3 20 3"/>
+
+                    <TextBlock Grid.Column="1" Grid.Row="0" x:Name="RaisonField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="1" x:Name="FormeField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="2" x:Name="ObjetField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="3" x:Name="IFField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="4" x:Name="ICEField" Text="... " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="5" x:Name="RCField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="6" x:Name="TPField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="7" x:Name="CINField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="8" x:Name="SiegeField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="9" x:Name="VillenField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="10" x:Name="TelField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="11" x:Name="FaxField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="12" x:Name="EmailField" Text="..." Margin="10 3 20 3"/>
+
+                    <TextBlock Grid.Column="2" Grid.Row="0" Text="ANNEE : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="1" Text="Encaissement ou Débit : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="2" Text="Mois ou trimestre : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="2" Grid.Row="3" Text="Crédit N-1 : " Margin="10 3 20 3"/>
+
+                    <TextBlock Grid.Column="3" Grid.Row="0" Text="..." x:Name="AnneeField" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="3" Grid.Row="1" Text="..." x:Name="EDField" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="3" Grid.Row="2" Text="..." x:Name="MTField" Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="3" Grid.Row="3" Text="..." x:Name="CreditField" Margin="10 3 20 3"/>
+
+                </Grid>
             </TabItem>
             <TabItem Header="Deduction" x:Name="DeductionTab">
                 <Grid Background="#FFE5E5E5"/>
@@ -136,8 +430,9 @@
             <TabItem Header="Codes" x:Name="CodesTab">
                 <Grid Background="#FFE5E5E5"/>
             </TabItem>
-        </TabControl>
+
+        </TabControl> 
 
 
-    </Grid>
+    </Grid> -->
 </UserControl>
