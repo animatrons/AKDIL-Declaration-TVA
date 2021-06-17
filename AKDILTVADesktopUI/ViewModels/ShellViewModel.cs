@@ -24,7 +24,7 @@ namespace AKDILTVADesktopUI.ViewModels
 
             _events.Subscribe(this);
 
-            ActivateItem(_container.GetInstance<LoginViewModel>()); // iniciate and clean up the login vm for next time
+            ActivateItem(_container.GetInstance<LoginViewModel>()); // initiate and clean up the login vm for next time
         }
 
         public void Handle(LogInEvent message)

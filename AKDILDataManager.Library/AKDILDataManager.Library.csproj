@@ -46,8 +46,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="DataAccess\EntrepriseData.cs" />
+    <Compile Include="DataAccess\EntrepriseYearData.cs" />
     <Compile Include="DataAccess\UserData.cs" />
     <Compile Include="Models\EntrepriseModel.cs" />
+    <Compile Include="Models\EntrepriseYearModel.cs" />
     <Compile Include="Models\UserModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Internal\DataAccess\SqlDataAccess.cs" />

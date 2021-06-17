@@ -19,7 +19,8 @@
             <TextBlock HorizontalAlignment="Right" Grid.Row="0" Text="Entreprise: " 
                        Margin="0,0,0,8" Height="27" VerticalAlignment="Bottom" Width="150"/>
 
-            <ComboBox x:Name="SelectEntreprise" Grid.Row="1" Margin="10,10,0,20"  Width="150">
+            <ComboBox x:Name="SelectEntreprise" Grid.Row="1" Margin="10,10,0,20"  Width="150" 
+                      SelectedItem="{Binding SelectedEntreprise}">
                 <ComboBox.ItemTemplate>
                     <DataTemplate>
                         <TextBlock Text="{Binding Raison_sociale}"/>
@@ -42,7 +43,14 @@
 
             <TextBlock Grid.Column="0" Text="... " Margin="20 10 20 0" Width="200" x:Name="TitleEntrepriseName"/>
             <ComboBox  Grid.Column="1" HorizontalAlignment="Left" Margin="20 10 20 0"
-                   VerticalAlignment="Top" Width="120" x:Name="SelectEntrepriseYear"/>
+                       VerticalAlignment="Top" Width="120" 
+                       SelectedItem="{Binding SelectedEntrepriseYear}" x:Name="SelectEntrepriseYear">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Annee}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
             <Button Grid.Column="2"  HorizontalAlignment="Center" Margin="20 10 20 0" 
                     Width="40" VerticalAlignment="Center" x:Name="AddEntrepriseYear"> + </Button>
             <ComboBox  Grid.Column="3" HorizontalAlignment="Left" x:Name="SelectEntrepriseMonth" Margin="20 10 20 0"
@@ -95,8 +103,7 @@
                     <TextBlock Grid.Column="0" Grid.Row="8" Text="Siége social : " Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="0" Grid.Row="9" Text="Ville : " Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="0" Grid.Row="10" Text="Tél : " Margin="10 3 20 3"/>
-                    <TextBlock Grid.Column="0" Grid.Row="11" Text="Fax : " Margin="10 3 20 3"/>
-                    <TextBlock Grid.Column="0" Grid.Row="12" Text="E MAIL : " Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="0" Grid.Row="11" Text="E MAIL : " Margin="10 3 20 3"/>
 
                     <TextBlock Grid.Column="1" Grid.Row="0" x:Name="RaisonField" Text="..." Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="1" Grid.Row="1" x:Name="FormeField" Text="..." Margin="10 3 20 3"/>
@@ -107,10 +114,9 @@
                     <TextBlock Grid.Column="1" Grid.Row="6" x:Name="TPField" Text="..." Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="1" Grid.Row="7" x:Name="CINField" Text="..." Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="1" Grid.Row="8" x:Name="SiegeField" Text="..." Margin="10 3 20 3"/>
-                    <TextBlock Grid.Column="1" Grid.Row="9" x:Name="VillenField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="9" x:Name="VilleField" Text="..." Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="1" Grid.Row="10" x:Name="TelField" Text="..." Margin="10 3 20 3"/>
-                    <TextBlock Grid.Column="1" Grid.Row="11" x:Name="FaxField" Text="..." Margin="10 3 20 3"/>
-                    <TextBlock Grid.Column="1" Grid.Row="12" x:Name="EmailField" Text="..." Margin="10 3 20 3"/>
+                    <TextBlock Grid.Column="1" Grid.Row="11" x:Name="EmailField" Text="..." Margin="10 3 20 3"/>
 
                     <TextBlock Grid.Column="2" Grid.Row="0" Text="ANNEE : " Margin="10 3 20 3"/>
                     <TextBlock Grid.Column="2" Grid.Row="1" Text="Encaissement ou Débit : " Margin="10 3 20 3"/>

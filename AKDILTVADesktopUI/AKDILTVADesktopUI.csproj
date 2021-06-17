@@ -85,6 +85,8 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="EventModels\LogInEvent.cs" />
+    <Compile Include="EventModels\SelectedEntrepriseYearModel.cs" />
+    <Compile Include="EventModels\SelectEntrepriseEvent.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
     <Compile Include="ViewModels\EntrepriseViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />

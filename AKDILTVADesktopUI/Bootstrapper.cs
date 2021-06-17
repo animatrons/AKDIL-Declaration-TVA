@@ -32,14 +32,16 @@ namespace AKDILTVADesktopUI
 
         protected override void Configure()
         {
-            _container.Instance(_container);
+            _container.Instance(_container)
+                .PerRequest<IEntrepriseEndpoint, EntrepriseEndpoint>()
+                .PerRequest<IEntrepriseYearEndpoint, EntrepriseYearEndpoint>();
 
             _container // this ties the interface to the implementation
                 .Singleton<IWindowManager, WindowManager>() // handling windows
                 .Singleton<IEventAggregator, EventAggregator>() // pass event messaging trhough out the application // a singleton creates onne instance of the class for the life of the application or the scope of the container
                 .Singleton<ILoggedInUserModel, LoggedInUserModel>()
-                .Singleton<IAPIHelper, APIHelper>()
-                .PerRequest<IEntrepriseEndpoint, EntrepriseEndpoint>();
+                .Singleton<IAPIHelper, APIHelper>();
+                
 
             // wiring up viewModels to views
             // using a reflection here, it will cause a small performance hit at startup

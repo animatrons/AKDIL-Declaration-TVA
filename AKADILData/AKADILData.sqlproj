@@ -82,6 +82,7 @@
     <Build Include="dbo\Tables\Declaration_totaux.sql" />
     <Build Include="dbo\Stored Procedures\spUserLookup.sql" />
     <Build Include="dbo\Stored Procedures\spEntreprise_GetAll.sql" />
+    <Build Include="dbo\Stored Procedures\spEnrepriseYear_GetAll_ById.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AKADILData.refactorlog" />
