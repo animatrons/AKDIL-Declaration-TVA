@@ -49,16 +49,34 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Api\APIHelper.cs" />
+    <Compile Include="Api\ChiffreAffairesEndpoint.cs" />
+    <Compile Include="Api\DeclarationChiffreAffairesImposableEndpoint.cs" />
+    <Compile Include="Api\DeclarationChiffreAffairesTotalEndpoint.cs" />
+    <Compile Include="Api\DeclarationDeductionsEndpoint.cs" />
     <Compile Include="Api\EntrepriseEndpoint.cs" />
+    <Compile Include="Api\EntrepriseMonthEndpoint.cs" />
     <Compile Include="Api\EntrepriseYearEndpoint.cs" />
     <Compile Include="Api\IAPIHelper.cs" />
+    <Compile Include="Api\IChiffreAffairesEndpoint.cs" />
+    <Compile Include="Api\IDeclarationChiffreAffairesImposableEndpoint.cs" />
+    <Compile Include="Api\IDeclarationChiffreAffairesTotalEndpoint.cs" />
+    <Compile Include="Api\IDeclarationDeductionsEndpoint.cs" />
     <Compile Include="Api\IEntrepriseEndpoint.cs" />
+    <Compile Include="Api\IEntrepriseMonthEndpoint.cs" />
     <Compile Include="Api\IEntrepriseYearEndpoint.cs" />
+    <Compile Include="Api\IVentilationDeductionsEndpoint.cs" />
+    <Compile Include="Api\VentilationDeductionsEndpoint.cs" />
     <Compile Include="Models\AuthenticatedUser.cs" />
+    <Compile Include="Models\ChiffreAffairesModel.cs" />
+    <Compile Include="Models\DeclarationChiffreAffairesImposableModel.cs" />
+    <Compile Include="Models\DeclarationChiffreAffairesTotalModel.cs" />
+    <Compile Include="Models\DeclarationDeductionsModel.cs" />
     <Compile Include="Models\EntrepriseModel.cs" />
+    <Compile Include="Models\EntrepriseMonthModel.cs" />
     <Compile Include="Models\EntrepriseYearModel.cs" />
     <Compile Include="Models\ILoggedInUserModel.cs" />
     <Compile Include="Models\LoggedInUserModel.cs" />
+    <Compile Include="Models\VentilationDeductionsModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

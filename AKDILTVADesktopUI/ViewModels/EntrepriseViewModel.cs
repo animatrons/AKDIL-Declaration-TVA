@@ -12,16 +12,30 @@ using System.Threading.Tasks;
 
 namespace AKDILTVADesktopUI.ViewModels
 {
-    public class EntrepriseViewModel : Screen, IHandle<SelectEntrepriseEvent>, IHandle<SelectedEntrepriseYearModel>/*, SelectedEntrepriseYearModel INotifyPropertyChanged*/
+    public class EntrepriseViewModel : Screen, IHandle<SelectEntrepriseEvent>, IHandle<SelectedEntrepriseYearModel>, IHandle<SelectedEntrepriseMonthModel>/*, SelectedEntrepriseYearModel INotifyPropertyChanged*/
     {
         IEntrepriseEndpoint _entrepriseEndpoint;
         IEntrepriseYearEndpoint _entrepriseYearEndpoint;
+        IEntrepriseMonthEndpoint _entrepriseMonthEndpoint;
+        IVentilationDeductionsEndpoint _ventilationDeductionsEndpoint;
+        IChiffreAffairesEndpoint _chiffreAffairesEndpoint;
+        IDeclarationChiffreAffairesTotalEndpoint _declarationChiffreAffairesTotalEndpoint;
+        IDeclarationChiffreAffairesImposableEndpoint _declarationChiffreAffairesImposableEndpoint;
+        IDeclarationDeductionsEndpoint _declarationDeductionsEndpoint;
         IEventAggregator _events;
 
-        public EntrepriseViewModel(IEntrepriseEndpoint entrepriseEndpoint, IEntrepriseYearEndpoint entrepriseYearEndpoint, IEventAggregator events)
+        public EntrepriseViewModel(IEntrepriseEndpoint entrepriseEndpoint, IEntrepriseYearEndpoint entrepriseYearEndpoint, IEntrepriseMonthEndpoint entrepriseMonthEndpoint,
+            IDeclarationChiffreAffairesImposableEndpoint declarationChiffreAffairesImposableEndpoint, IDeclarationDeductionsEndpoint declarationDeductionsEndpoint,
+            IChiffreAffairesEndpoint chiffreAffairesEndpoint, IVentilationDeductionsEndpoint ventilationDeductionsEndpoint, IDeclarationChiffreAffairesTotalEndpoint declarationChiffreAffairesTotalEndpoint, IEventAggregator events)
         {
             _entrepriseEndpoint = entrepriseEndpoint;
             _entrepriseYearEndpoint = entrepriseYearEndpoint;
+            _entrepriseMonthEndpoint = entrepriseMonthEndpoint;
+            _ventilationDeductionsEndpoint = ventilationDeductionsEndpoint;
+            _chiffreAffairesEndpoint = chiffreAffairesEndpoint;
+            _declarationChiffreAffairesTotalEndpoint = declarationChiffreAffairesTotalEndpoint;
+            _declarationChiffreAffairesImposableEndpoint = declarationChiffreAffairesImposableEndpoint;
+            _declarationDeductionsEndpoint = declarationDeductionsEndpoint;
             _events = events;
 
             _events.Subscribe(this);
@@ -58,24 +72,50 @@ namespace AKDILTVADesktopUI.ViewModels
             var yearList = await _entrepriseYearEndpoint.GetAllById(_selectedEntreprise.Id);
             SelectEntrepriseYear = new BindingList<EntrepriseYearModel>(yearList);
         }
-
-        public void Handle(SelectedEntrepriseYearModel message)
+        // Select year event
+        public async void Handle(SelectedEntrepriseYearModel message)
         {
             AnneeField = (SelectedEntrepriseYear?.Annee.ToString());
             EDField = SelectedEntrepriseYear?.Encaissement_debit;
             MTField = SelectedEntrepriseYear?.Mois_trimestre;
             CreditField = SelectedEntrepriseYear?.Credit_N1.ToString();
 
+            if (!(SelectedEntrepriseYear is null))
+            {
+                var monthList = await _entrepriseMonthEndpoint.GetAllById(SelectedEntrepriseYear.Id);
+                SelectEntrepriseMonth = new BindingList<EntrepriseMonthModel>(monthList);
+            }
+            else
+            {
+                SelectEntrepriseMonth = new BindingList<EntrepriseMonthModel>();
+            }
         }
-
-
-
-        /*public event PropertyChangedEventHandler PropertyChanged;
-
-        private void NotifyPropertyChanged([CallerMemberName] String propertyName = "")
+        // Select month event
+        public async void Handle(SelectedEntrepriseMonthModel message)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
-        }*/
+            if (!(SelectedEntrepriseMonth is null))
+            {
+                var dedcutionsTable = await _ventilationDeductionsEndpoint.GetAllById(SelectedEntrepriseMonth.Id);
+                var chiffreAffairesTable = await _chiffreAffairesEndpoint.GetAllById(SelectedEntrepriseMonth.Id);
+                var daclarationCATotal = await _declarationChiffreAffairesTotalEndpoint.GetAllById(SelectedEntrepriseMonth.Id);
+                var declarationCAImposable = await _declarationChiffreAffairesImposableEndpoint.GetAllById(SelectedEntrepriseMonth.Id);
+                var declarationDeduction = await _declarationDeductionsEndpoint.GetAllById(SelectedEntrepriseMonth.Id);
+
+                DedcutionsTable = new BindingList<VentilationDeductionsModel>(dedcutionsTable);
+                ChiffreAffairesTable = new BindingList<ChiffreAffairesModel>(chiffreAffairesTable);
+                DeclarationCATable = new BindingList<DeclarationChiffreAffairesTotalModel>(daclarationCATotal);
+                DeclarationCAImposableTable = new BindingList<DeclarationChiffreAffairesImposableModel>(declarationCAImposable);
+                DeclarationDeductionsTable = new BindingList<DeclarationDeductionsModel>(declarationDeduction);
+            }
+            else
+            {
+                DedcutionsTable = new BindingList<VentilationDeductionsModel>();
+                ChiffreAffairesTable = new BindingList<ChiffreAffairesModel>();
+                DeclarationCATable = new BindingList<DeclarationChiffreAffairesTotalModel>();
+                DeclarationCAImposableTable = new BindingList<DeclarationChiffreAffairesImposableModel>();
+                DeclarationDeductionsTable = new BindingList<DeclarationDeductionsModel>();
+            }
+        }
 
         // The drop down list of the entreprises
         private BindingList<EntrepriseModel> _selectEntreprise;
@@ -89,7 +129,7 @@ namespace AKDILTVADesktopUI.ViewModels
                 NotifyOfPropertyChange(() => SelectEntreprise);
             }
         }
-
+        // Year
         private BindingList<EntrepriseYearModel> _selectEntrepriseYear;
 
         public BindingList<EntrepriseYearModel> SelectEntrepriseYear
@@ -99,6 +139,80 @@ namespace AKDILTVADesktopUI.ViewModels
             { 
                 _selectEntrepriseYear = value; 
                 NotifyOfPropertyChange(() => SelectEntrepriseYear);
+            }
+        }
+        // Month
+        private BindingList<EntrepriseMonthModel> _selectEntrepriseMonth;
+
+        public BindingList<EntrepriseMonthModel> SelectEntrepriseMonth
+        {
+            get { return _selectEntrepriseMonth; }
+            set 
+            {
+                _selectEntrepriseMonth = value; 
+                NotifyOfPropertyChange(() => SelectEntrepriseMonth);
+            }
+        }
+
+        
+        // Dedcutions table
+        private BindingList<VentilationDeductionsModel> _dedcutionsTable;
+
+        public BindingList<VentilationDeductionsModel> DedcutionsTable
+        {
+            get { return _dedcutionsTable; }
+            set 
+            { 
+                _dedcutionsTable = value; 
+                NotifyOfPropertyChange(() => DedcutionsTable);
+            }
+        }
+        // Chiffre Affaires Table
+        private BindingList<ChiffreAffairesModel> _chiffreAffairesTable;
+
+        public BindingList<ChiffreAffairesModel> ChiffreAffairesTable
+        {
+            get { return _chiffreAffairesTable; }
+            set 
+            { 
+                _chiffreAffairesTable = value; 
+                NotifyOfPropertyChange(() => ChiffreAffairesTable);
+            }
+        }
+        // Declaration CA total table
+        private BindingList<DeclarationChiffreAffairesTotalModel> _declarationCATotal;
+
+        public BindingList<DeclarationChiffreAffairesTotalModel> DeclarationCATable
+        {
+            get { return _declarationCATotal; }
+            set 
+            { 
+                _declarationCATotal = value;
+                NotifyOfPropertyChange(() => DeclarationCATable);
+            }
+        }
+        // Declaration CA imposable table
+        private BindingList<DeclarationChiffreAffairesImposableModel> _declarationCAImposable;
+
+        public BindingList<DeclarationChiffreAffairesImposableModel> DeclarationCAImposableTable
+        {
+            get { return _declarationCAImposable; }
+            set
+            {
+                _declarationCAImposable = value;
+                NotifyOfPropertyChange(() => DeclarationCAImposableTable);
+            }
+        }
+        // Declaration deductions
+        private BindingList<DeclarationDeductionsModel> _declarationDeductionsTable;
+
+        public BindingList<DeclarationDeductionsModel> DeclarationDeductionsTable
+        {
+            get { return _declarationDeductionsTable; }
+            set 
+            { 
+                _declarationDeductionsTable = value; 
+                NotifyOfPropertyChange(() => DeclarationDeductionsTable);
             }
         }
 
@@ -114,11 +228,10 @@ namespace AKDILTVADesktopUI.ViewModels
                 _selectedEntreprise = value;
                 _events.PublishOnUIThread(new SelectEntrepriseEvent()); // Trigger an event when selecting an item from the dropdown list
                 NotifyOfPropertyChange(() => SelectedEntreprise);
-                /*NotifyPropertyChanged();*/
             }
         }
 
-        // The currently selected entreprise year from the drop down list
+        // selected Year
         private EntrepriseYearModel _entrepriseEntrepriseYear;
 
         public EntrepriseYearModel SelectedEntrepriseYear
@@ -127,10 +240,24 @@ namespace AKDILTVADesktopUI.ViewModels
             set 
             { 
                 _entrepriseEntrepriseYear = value;
-                _events.PublishOnUIThread(new SelectedEntrepriseYearModel()); // Trigger an event when selecting an item from the dropdown list
+                _events.PublishOnUIThread(new SelectedEntrepriseYearModel()); // Trigger an event when selecting an item from the dropdown list SelectedEntrepriseMonthModel
                 NotifyOfPropertyChange(() => SelectedEntrepriseYear);
             }
         }
+        // selected Year
+        private EntrepriseMonthModel _selectedEntrepriseMonth;
+
+        public EntrepriseMonthModel SelectedEntrepriseMonth
+        {
+            get { return _selectedEntrepriseMonth; }
+            set 
+            { 
+                _selectedEntrepriseMonth = value;
+                _events.PublishOnUIThread(new SelectedEntrepriseMonthModel());
+                NotifyOfPropertyChange(() => SelectedEntrepriseMonth);
+            }
+        }
+
 
 
         // Entreprise identification fields:

@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Code] INT NOT NULL, 
-    [Designation] NVARCHAR(50) NULL, 
+    [Designation] NVARCHAR(MAX) NULL, 
     [Base_imposable] MONEY NULL, 
     [Taxe_exigible] MONEY NULL, 
     [Id_instance] INT NOT NULL, 

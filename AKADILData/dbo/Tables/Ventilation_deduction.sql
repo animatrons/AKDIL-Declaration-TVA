@@ -2,7 +2,7 @@
 (
 	[Id] INT NOT NULL PRIMARY KEY IDENTITY,
 	[Code] INT NOT NULL, 
-    [Designation] NVARCHAR(50) NULL,
+    [Designation] NVARCHAR(MAX) NULL,
     [Taux] INT NULL, 
     [TVA] MONEY NULL, 
     [Prorata] INT NULL, 

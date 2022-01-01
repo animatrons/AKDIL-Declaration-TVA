@@ -83,6 +83,12 @@
     <Build Include="dbo\Stored Procedures\spUserLookup.sql" />
     <Build Include="dbo\Stored Procedures\spEntreprise_GetAll.sql" />
     <Build Include="dbo\Stored Procedures\spEnrepriseYear_GetAll_ById.sql" />
+    <Build Include="dbo\Stored Procedures\spEntrepriseMonth_GetAll_ByYearId.sql" />
+    <Build Include="dbo\Stored Procedures\spMonthDeductions.sql" />
+    <Build Include="dbo\Stored Procedures\spMonthCA.sql" />
+    <Build Include="dbo\Stored Procedures\spDeclarationChiffreAffairesTotal.sql" />
+    <Build Include="dbo\Stored Procedures\spDeclarationChiffreAffairesImposable.sql" />
+    <Build Include="dbo\Stored Procedures\spDeclarationDeductions.sql" />
   </ItemGroup>
   <ItemGroup>
     <RefactorLog Include="AKADILData.refactorlog" />

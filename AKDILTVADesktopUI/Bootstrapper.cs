@@ -34,7 +34,13 @@ namespace AKDILTVADesktopUI
         {
             _container.Instance(_container)
                 .PerRequest<IEntrepriseEndpoint, EntrepriseEndpoint>()
-                .PerRequest<IEntrepriseYearEndpoint, EntrepriseYearEndpoint>();
+                .PerRequest<IEntrepriseYearEndpoint, EntrepriseYearEndpoint>()
+                .PerRequest<IEntrepriseMonthEndpoint, EntrepriseMonthEndpoint>()
+                .PerRequest<IVentilationDeductionsEndpoint, VentilationDeductionsEndpoint>()
+                .PerRequest<IChiffreAffairesEndpoint, ChiffreAffairesEndpoint>()
+                .PerRequest<IDeclarationChiffreAffairesTotalEndpoint, DeclarationChiffreAffairesTotalEndpoint>()
+                .PerRequest<IDeclarationChiffreAffairesImposableEndpoint, DeclarationChiffreAffairesImposableEndpoint>()
+                .PerRequest<IDeclarationDeductionsEndpoint, DeclarationDeductionsEndpoint>();
 
             _container // this ties the interface to the implementation
                 .Singleton<IWindowManager, WindowManager>() // handling windows

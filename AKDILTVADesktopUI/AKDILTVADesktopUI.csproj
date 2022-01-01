@@ -85,6 +85,7 @@
     </ApplicationDefinition>
     <Compile Include="Bootstrapper.cs" />
     <Compile Include="EventModels\LogInEvent.cs" />
+    <Compile Include="EventModels\SelectedEntrepriseMonthModel.cs" />
     <Compile Include="EventModels\SelectedEntrepriseYearModel.cs" />
     <Compile Include="EventModels\SelectEntrepriseEvent.cs" />
     <Compile Include="Helpers\PasswordBoxHelper.cs" />
@@ -104,6 +105,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="Views\Window1.xaml.cs">
+      <DependentUpon>Window1.xaml</DependentUpon>
+    </Compile>
     <Page Include="Views\EntrepriseView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -113,6 +117,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Views\ShellView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\Window1.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

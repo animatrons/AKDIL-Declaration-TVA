@@ -54,7 +54,13 @@
             <Button Grid.Column="2"  HorizontalAlignment="Center" Margin="20 10 20 0" 
                     Width="40" VerticalAlignment="Center" x:Name="AddEntrepriseYear"> + </Button>
             <ComboBox  Grid.Column="3" HorizontalAlignment="Left" x:Name="SelectEntrepriseMonth" Margin="20 10 20 0"
-                   VerticalAlignment="Top" Width="120"/>
+                   VerticalAlignment="Top" Width="120" SelectedItem="{Binding SelectedEntrepriseMonth}">
+                <ComboBox.ItemTemplate>
+                    <DataTemplate>
+                        <TextBlock Text="{Binding Mois}"/>
+                    </DataTemplate>
+                </ComboBox.ItemTemplate>
+            </ComboBox>
 
         </Grid>
 
@@ -191,8 +197,12 @@
 
                         <Button x:Name="AddFactureDeduction" Grid.Column="22">Ajouter</Button>
                     </Grid>
-                    <DataGrid ScrollViewer.CanContentScroll="True" x:Name="DataGridDeduction">
-                       
+                    <DataGrid ScrollViewer.CanContentScroll="True" x:Name="DataGridDeduction"
+                              ItemsSource="{Binding Path=DedcutionsTable}"
+                              AutoGenerateColumns="True">
+                        <DataGrid.Columns>
+                            
+                        </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
             </TabItem>
@@ -239,13 +249,20 @@
 
                         <Button x:Name="AddFactureCA" Grid.Column="16">Ajouter</Button>
                     </Grid>
-                    <DataGrid ScrollViewer.CanContentScroll="True" x:Name="DataGridCA">
+                    <DataGrid ScrollViewer.CanContentScroll="True" x:Name="DataGridCA"
+                              ItemsSource="{Binding Path=ChiffreAffairesTable}"
+                              AutoGenerateColumns="True">
+                        <DataGrid.Columns>
 
+                        </DataGrid.Columns>
                     </DataGrid>
                 </DockPanel>
             </TabItem>
 
             <TabItem Header="Declaration" FontSize="12" x:Name="DeclarationTab">
+                <ScrollViewer VerticalScrollBarVisibility="Auto">
+                    
+                
                 <DockPanel HorizontalAlignment="Stretch" VerticalAlignment="Stretch" Background="#FFE5E5E5">
                     <Grid DockPanel.Dock="Top" Height="25">
                         <Grid.ColumnDefinitions>
@@ -254,7 +271,12 @@
                         <TextBlock>Ventilation du chiffre d’affaires total Montant:</TextBlock>
                     </Grid>
 
-                    <DataGrid x:Name="DataGridDeclarationCATotal" DockPanel.Dock="Top" Height="auto">
+                    <DataGrid x:Name="DataGridDeclarationCATotal" DockPanel.Dock="Top" Height="auto"
+                              ItemsSource="{Binding Path=DeclarationCATable}"
+                              AutoGenerateColumns="True">
+                        <DataGrid.Columns>
+
+                        </DataGrid.Columns>
                         
                     </DataGrid>
                     
@@ -265,7 +287,13 @@
                         <TextBlock> Ventilation du chiffre d’affaires imposable: </TextBlock>
                     </Grid>
 
-                    <DataGrid x:Name="DataGridDeclarationCAImposable" DockPanel.Dock="Top" Height="auto">
+                    <DataGrid x:Name="DataGridDeclarationCAImposable" DockPanel.Dock="Top" Height="auto"
+                              ItemsSource="{Binding Path=DeclarationCAImposableTable}"
+                              AutoGenerateColumns="True">
+                        <DataGrid.Columns>
+
+                        </DataGrid.Columns>
+
 
                     </DataGrid>
                     
@@ -277,11 +305,27 @@
 
                     </Grid>
 
-                    <DataGrid x:Name="DataGridDeclarationDeduction" DockPanel.Dock="Top" Height="auto">
+                    <DataGrid x:Name="DataGridDeclarationDeduction" DockPanel.Dock="Top" Height="auto"
+                              ItemsSource="{Binding Path=DeclarationDeductionsTable}"
+                              AutoGenerateColumns="True">
+                        <DataGrid.Columns>
 
+                        </DataGrid.Columns>
+                        
                     </DataGrid>
-                    
-                </DockPanel>
+
+                        <Grid DockPanel.Dock="Top" Height="25">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="500"/>
+                            </Grid.ColumnDefinitions>
+                            <Button>Exporter declaration TVA</Button>
+
+                        </Grid>
+                        
+
+                    </DockPanel>
+
+                </ScrollViewer>
             </TabItem>
 
             <TabItem Header="Codes" FontSize="12" x:Name="CodesTab">
